@@ -1,0 +1,125 @@
+% your first section
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\section{Introduction}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+You can also use swedish letters ä ö å, Ä, Ö, Å. Unicode characters in general should work.
+
+
+%Another section
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\section{Theorems and definitions}
+
+\begin{definition}
+This is a definition!
+\end{definition}
+
+\begin{theorem}\label{thm: label}
+This is a theorem!
+\end{theorem}
+
+To cross reference: By Theorem~\ref{thm: label} we can say...
+\begin{lemma}
+This is a lemma.
+\end{lemma}
+\begin{proof}
+Put here the proof of the lemma!
+\end{proof}
+
+
+\begin{proof}[Proof of Theorem \ref{thm: label}]
+Another proof
+\end{proof}
+
+
+\begin{corollary}
+here is a corollary!
+\end{corollary}
+
+If you want to write a beautiful equation in line do like that $e^{i\pi}+1=0$.
+You might also want to write it on its own line
+\[
+e^{i\pi}+1=0.
+\]
+If you think that you are going to need to cross reference your equation:
+\begin{equation}\label{eq:beautiful}
+e^{i\pi}+1=0
+\end{equation}
+and this is how you cross reference it \eqref{eq:beautiful}
+You might also want to have aligned equations on more lines.
+\begin{align}
+    e^{i\pi}+1&=0\\
+    (\cos\theta)^2+(\sin\theta)^2 &=1
+\end{align}
+
+If you need to cross reference something in the bibliography, use the cite command: \cite[p. 45]{Biggs2002}. 
+The actual references are stored in a different file, called bibliographyFile.bib 
+
+You can reference most things you found useful,
+for example, books \cite{Biggs2002,Knuth1998ArtOfProgramming,LascouxPolynomialsBook}.
+Research articles and preprints, \cite{AlexanderssonSulzgruber2019,Sherman2015x}.
+Or another thesis, \cite{Teff2013}.
+
+You can also cite online sources. For example, the Encyclopedia of integer sequences, \cite{OEIS},
+or a YouTube video \cite{Bazett2018yt}. 
+It is even possible to refer to a discussion you had with someone, \cite{PrivateCommunicationWithJustin}.
+This is usually rare, it is better to thank them in the acknowledgements section (if they were helpful).
+
+
+
+%another section
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\section{Tables and graphs}
+Here a few examples of tables and graphs.
+%A subsection
+\subsection{Tables}
+\begin{center}
+\begin{tabular}{c c c c c c c c}
+\arrayrulecolor{Azzurro}
+\hline
+{\bfseries Code} & {\bfseries CdL} & {\bfseries xxx} & {\bfseries $T_{setup/lotto}$} & {\bfseries $T_{lav/st}$} & {\bfseries $T_{proc/pezzo}$} & {\bfseries Quantitity} & {\bfseries $T_{tot}$}\\
+\hline
+100 & 4 & 250 & 25 & 0,5 & 0,6 & 1 & 0,6\\
+111 & 2 & 250 & 20 & 2 & 2,08 & 1 & 2,08 \\
+111 & 3 & 250 & 15 & 1,5 & 1,56 & 1 & 1,56 \\
+112 & 2 & 250 & 20 & 2,5 & 2,58 & 1 & 2,58 \\
+112 & 3 & 250 & 15 & 2 & 2,06 & 1 & 2,06\\
+113 & 3 & 500 & 15 & 1 & 1,03 & 2 & 2,06\\
+120 & 1 & 50 & 30 & 2 & 2,6 & 0,1 & 0,26\\
+121 & 1 & 25 & 30 & 3 & 4,2 & 0,1 & 0,42 \\
+121 & 1 & 25 & 30 & 2,5 & 3,7 & 0,1 & 0,37 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+%another section
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+
+\section{Insert a figure}
+\begin{figure}[H]
+\centering
+\caption{\label{fig:1} put the caption here}
+\end{figure}
+
+\subsection{Footnote}
+
+You can create a footnote like this.\footnote{I created a footnote.}
+
+
+
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\section{Conclusion}
+
+Remember the internet is full of places that can help you write a beautiful document with latex.
+Some example are \url{overleaf.com} and \verb!stackexchange! just ask Google! 
+In addition with an SU e-mail address you should be able to 
+create (for free) a premium account on \url{overleaf.com}, 
+so you do not need to download a tex editor and you will have
+the full latex distribution at your hand (if you are connected to the internet).
+
