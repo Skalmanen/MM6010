@@ -1,9 +1,23 @@
-Abstract algebra traverses through layers of abstraction as an exercise. 
+Abstract algebra traverses through layers of abstraction as an exercise. As an example, if we are interested in how groups act when supplemented with commutivity (Abelian groups), it would be useful to start at groups and traverse the layers of figure \ref{fig:lattice-abstraction} downwards. Note that climbing upwards may not be as fruitful for this particular case.
 
-\begin{figure}[h]
+Choosing an Abelian group that stays beteween groups and rings is $(\R, +)$. Here the set of real numbers is only considered with the binary operator $+$, and commutivity follows. Analyzing this group and all the properties that are associated with it is of interest. However, much use can be extracted from climbing further down the abstraction ladder and analyzing rings \ref{sub@fig:lattice-abstraction}. Keeping it concrete with numbers, one can consider the abelian ring $\Z$. Time can be spent on this layer of abstraction and knowledge can be obtained through leveraging $\Z$'s special properties. Going even further down the ladder, to a field, one could analyze $\Q$. At each layer, new intuition can be gained. Note also, that while traversing downwards in the group abstraction, we were climbing up and down in the generalization of numbers. Starting at the top with $\R$, we jumped all the way down to $\Z$, and then up again to $\Q$. It is important to consider this, as different layers of abstraction do not neccessarily have to correspond with another. Caution is required when dealing with this iterative abstract process.
+
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.3\textwidth]{figures/LatticeAlgebraLayersOfAbstraction.png}
-    \caption{Layers of Abstraction in Lattice Algebra \cite{LatticeAB}}
-    \label{fig:lattice-abstraction}
-\end{figure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/LatticeAlgebraLayersOfAbstraction.png}
+        \caption{Abstractions within Groups \cite{LatticeAB}}
+        \label{fig:lattice-abstraction}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/NumbersAbstraction.png}
+        \caption{Generalization of Numbers \cite{geogebra_keeping_it_real_n8hauvp6}}
+        \label{fig:GeneralNumbers}
+    \end{subfigure}
 
+    \caption{Traversing the ladder of Abstraction}
+    \label{fig:abstractionLadder}
+\end{figure}
