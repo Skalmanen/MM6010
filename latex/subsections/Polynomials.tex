@@ -1,0 +1,20 @@
+In order to adress the problem at hand fully, we need to generalize the idea of a polynomial. This is done by compressing more and more inforamation into a single mathematical expression. A process of abstraction is necessary. We start with the monomial, continue to a polynomial, and finally consider polynomial rings. All work done is done on these polynomials rings, and this process of abstraction enables us to say something about all monomials simultaneously. 
+
+\begin{definition}
+A \textbf{monomial} in $\vectorComponents{x}$ is a product of the form
+    \begin{equation}
+        x^\alpha = x_1^{\alpha_1} \cdot x_2^{\alpha_2} \cdot\cdot\cdot x_n^{\alpha_n}
+    \end{equation}
+where all $\alpha_1,...,\alpha_n$ are nonnegative integers.
+\end{definition}
+
+As the root word "mono" suggests, there is only one of these terms $\xalpha$.However, as we are creating the tools to generalize and deal with more abstract concepts, we also want to include the ability to capture any linear combination of these monomials.
+
+\begin{definition}
+A \textbf{polynomial} \textit{f} in $\vectorComponents{x}$ with coefficients, $\vectorComponents{a}$, in a field $\K$ is a finite linear combination of monomials. 
+    \begin{equation}
+        f = \sum_{\alpha} a_{\alpha} x^\alpha,\quad a_{\alpha} \in \K
+    \end{equation}
+\end{definition}
+
+With the polynomial definitions at hand, we can construct the final abstraction for our mathematics involving polynomials, $\K[x] = \K[\vectorComponents{x}]$. When leveraging this powerful abstraction, we capture \textit{n} dimensions of variables on any field $\K$. This enables more compact analysis.  
