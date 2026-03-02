@@ -20,7 +20,7 @@ Affine maps, crudely speaking, are generalizations of linear maps \cite{gallier2
 \end{enumerate}
 
 \subsubsection{Affine Spaces}
-In order to understand affine varieties, affine spaces must be understood. This coordinate ambigious space is of interest since more abstract enteties can be modeled upon it. Let us first consider the definition: 
+In order to understand affine varieties, affine spaces must be understood. This coordinate-agnostic space is of interest since more abstract enteties can be modeled upon it. Let us first consider the definition: 
 
 \begin{definition}
     An \textit{affine space} is either the empty set, or a triple $<E, \vec{E}, +>$. $E$ is a nonempty set of points while $\vec{E}$ is a vector space (of translations). The action $+$ is an operation on both $E$ and $\vec{E}$ defined as follows: $+: E \times \vec{E} \rightarrow E$. The following axioms are assumed for affine space:
@@ -38,7 +38,7 @@ In order to understand affine varieties, affine spaces must be understood. This 
     \label{fig:affineSpace}
 \end{figure}
 
-The definition is a bit stuffy, but the intuition should be clear when considering figure \ref{fig:affineSpace}. Here a seperation between the vectors and the points \textit{to which the vectpr is applied to} should be noted. These two can be defined independently. This seperation is exactly what enabled coordinate-agnostic property that is of interest. 
+The definition is a bit stuffy, but the intuition should be clear when considering figure \ref{fig:affineSpace}. Here a seperation between the vectors and the points \textit{to which the vector is applied to} should be noted. These two can be defined independently. This seperation is exactly what enabled coordinate-agnostic property that is of interest. 
 
 A supplemental definition will be provided for the affine to clear up any confusion. 
 
@@ -51,7 +51,7 @@ A supplemental definition will be provided for the affine to clear up any confus
 
 This supplement elucidates the uncertainty behind how this space is defined as all other spaces. It's vector space has translations and they are restricted to the field upon which they operate.
 
-\subsection{Polynomials in Affine Spaces}
+\subsubsection{Polynomials in Affine Spaces}
 It is time to relate the previously discussed polynomial to affine spaces. Leveraging definition \ref{def:affineSpace}, we can relate the two. \cite{Applied} refers to this as a "key idea" and shows that the polynomial $p \in \K[x]$ yields a polynomial \textit{function} as follows: 
 \begin{equation}
     p : \K^n  \rightarrow \K
@@ -60,10 +60,24 @@ It is time to relate the previously discussed polynomial to affine spaces. Lever
 The function maps the multidimensional field onto the monodimension. This $p$ takes any $\hat{x} \in \K$ and associates a unique $p(\hat{x})$ to it. This is done easily by substituting $x = \hat{x}$ in the polynomial p. One important note is relevant to the zeros of $p$ when taking $\K$ as a infinite field (e.g. $\Z, \R$). Then $p$ is the zero polynomial if and only if $p(\hat{x}) = 0$ for all $\hat{x} \in \K$.  
 
 \subsubsection{Affine Varieties}
-With an understand of how the space we will operate upon will work, the first algebreic structure of geometry will be discussed: affine varieties.  
+With an understanding of how the space we will operate upon will work, the first algebreic structure of geometry will be discussed: affine varieties.  
 
-\begin{figure}
+\begin{definition}
+    Let $\K$ be a field, and let $\vectorComponentsX{f}{s}$ be polynomials in $\K[\vectorComponents{x}]$. Then, set
+    \begin{equation}
+        \boldsymbol{V}(\vectorComponentsX{f}{s}) = 
+        \left\{
+            (\vectorComponents{a}) \in \K^n |\enspace f_i(\vectorComponents{a}) = 0 \enspace \forall 1 \leq i \leq s
+        \right\}
+    \end{equation}
+    We call $\boldsymbol{V}(\vectorComponentsX{f}{s})$ the \textbf{affine variety} defined by $\vectorComponentsX{f}{s}$.
+\end{definition}
+
+\begin{figure}[ht]
     \centering
     \includegraphics[width = \textwidth]{figures/AffineVariety.png}
     \caption{Exmaples of affine spaces \cite{Applied}}
+    \label{fig:varietyExample}
 \end{figure}
+
+In other words, the affine varity is the set of $(\vectorComponents{a})$ that solve all the equations in the variety simulteniously. Even though $\boldsymbol{V}$ might simply look like a graphed equation, figure \ref{fig:varietyExample}
