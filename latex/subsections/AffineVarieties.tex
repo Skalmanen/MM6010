@@ -38,6 +38,8 @@ In order to understand affine varieties, affine spaces must be understood. This 
     \label{fig:affineSpace}
 \end{figure}
 
+A quick note of importance on each axiom. If you start at point a and do nothing, you should still be at a. This seems obvious and silly to include, but these are axiomatic assumptions. We must treat them with the respect they deserve. Axiom two deals with the associative property. The fact that the order of operations makes little difference to the outcome is of great interest. To simply calculations algebreically, rearanging order is always of interest. The last axiom, that of uniqueness is also of importance. Being able to assume that an unique element in $\vec{E}$ always exists that can connect two points $a$ and $b$ is useful when solving these problems on a higher level of abstraction. 
+
 The definition is a bit stuffy, but the intuition should be clear when considering figure \ref{fig:affineSpace}. Here a seperation between the vectors and the points \textit{to which the vector is applied to} should be noted. These two can be defined independently. This seperation is exactly what enabled coordinate-agnostic property that is of interest. 
 
 A supplemental definition will be provided for the affine to clear up any confusion. 
@@ -80,4 +82,6 @@ With an understanding of how the space we will operate upon will work, the first
     \label{fig:varietyExample}
 \end{figure}
 
-In other words, the affine varity is the set of $(\vectorComponents{a})$ that solve all the equations in the variety simulteniously. Even though $\boldsymbol{V}$ might simply look like a graphed equation, figure \ref{fig:varietyExample}
+In other words, the affine varity is the set of $(\vectorComponents{a})$ that solve all the equations in the variety simulteniously. It is the intersection of all the polynomial's roots. Even though $\boldsymbol{V}$ might simply look like a graphed equation, figure \ref{fig:varietyExample}a provides the base for intuition. While it may look like a regular circular graph, with your good ole' $x$ and $y$ coordinates, the keen observer will note that we are dealing with two dimensions, $x_1, x_2$ and that the graph is in fact the where this polynomial studied is equal to $0$. If we extract the polynomail from the variety and set it to $0$, we end up with $x_1^2 + x_2^2 = 1$. If we graph the solution to this equation, we get the resulting affine variety.
+
+ While the above example may make sense, confusion remains as to what the difference between the variety and simply graphing the equation \textit{is}. This difference is made clear by inspecting \ref{fig:varietyExample}c. Here, just as in \ref{fig:varietyExample}a, we graph the solution of each individual \textit{polynomial} seperetaly. Once we have the individual solutions, we must find their intesection, as that is where the affine variety lies. The difference between an affine variety and simply graphing the solutions to the individual equations becomes clear in higher dimensions. 
