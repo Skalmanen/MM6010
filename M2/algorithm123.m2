@@ -3,7 +3,6 @@ multivariatePolynomialDivision = (p, gs) -> (
     f := p;
     qs := for i from 0 to #gs-1 list 0_(ring p); --generating dummy variable for result
 
-    print qs;
     while f != 0_(ring p) do (
 	i := 0;
 	divisionOccured := false;
