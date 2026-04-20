@@ -1,5 +1,5 @@
-runExample = () ->(
-    R = QQ[z];
+runExample = () -> (
+    R = RR[z];
 
     g := z^3-3*z^2+2*z;
 
@@ -20,13 +20,35 @@ runExample = () ->(
 	flatten entries coeffsMatrix
 	);
 
-    print rows;
     zmatrix := matrix rows;
-    print zmatrix;
 
     finalZMatrix := zmatrix^2+zmatrix+id_(target zmatrix);
-    print finalZMatrix;
+    return finalZMatrix;
 )
 
 
- 
+ runExampleWithFunction = () -> (
+    R = RR[z];
+
+    g := z^3-3*z^2+2*z;
+
+    I = ideal g;
+
+    load "algorithm161.m2";
+
+    zmatrix := solveQMatrix(R, I, z);
+
+    finalZMatrix := zmatrix^2+zmatrix+id_(target zmatrix);
+    return finalZMatrix;
+)
+
+testFunction = () -> (
+    preBuiltMatrix := runExample();
+    matrixFromFunction := runExampleWithFunction();
+
+    print "Matrix from the example";
+    print preBuiltMatrix;
+
+    print "Matrix using refactored function";
+    print matrixFromFunction;
+ )
