@@ -9,6 +9,29 @@
 \usepackage{latexsym,amsmath,amsthm,bm,lmodern,titlesec,xcolor,graphicx,setspace,pdfpages,
 geometry,marginnote,caption,array,sectsty,siunitx,eurosym,colortbl,float,wrapfig,vmargin,tikz,hyperref,amssymb, subcaption}
 \usepackage[nottoc]{tocbibind}
+\usepackage{listings}
+
+\lstdefinelanguage{Macaulay2}{%
+  keywords={needs,load,for,while,if,then,else,return,break,continue,apply,select,scan,print,exit},%
+  sensitive=true,%
+  morecomment=[l]{--},%
+  morecomment=[s]{/*}{*/},%
+  morestring=[b]"%,%
+}
+\lstset{% 
+  language=Macaulay2,%
+  basicstyle=\ttfamily\footnotesize,%
+  keywordstyle=\color{Blu}\bfseries,%
+  commentstyle=\color{gray}\itshape,%
+  stringstyle=\color{red},%
+  breaklines=true,%
+  breakatwhitespace=true,%
+  showstringspaces=false,%
+  numbers=left,%
+  numberstyle=\tiny,%
+  frame=single,%
+  captionpos=b%
+}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
@@ -151,6 +174,9 @@ geometry,marginnote,caption,array,sectsty,siunitx,eurosym,colortbl,float,wrapfig
 \input{sections/2_Elimination.tex}
 \input{sections/4_MacaulayAlgorithms.tex}
 
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+\appendix
+\input{sections/appendix_Macaulay2.tex}
 
 %The section with references.
 

@@ -14,5 +14,3 @@ rem = polyToDivide%I
 
 print("the rem is: ")
 print(rem)
-
-
