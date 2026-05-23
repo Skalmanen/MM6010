@@ -62,7 +62,7 @@ leadingTermDevision = (p,g) -> (
 
 	ringVariables := toList gens ring p; 
 	
-	Q := product(#ringVariables, i -> ringVariables#i ^ (exponentsQ#i)); --generating the the monomial
+	Q := product(#ringVariables, i -> ringVariables#i ^ (exponentsQ#i)); --generating the the polynomial
 	
 	result = coefficientResult * Q;
      );
