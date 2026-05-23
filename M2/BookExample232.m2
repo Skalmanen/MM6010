@@ -7,4 +7,5 @@ GI = value toString gens gb I
 
 Mr = value toString transpose Me
 
+--powerful way to solve the row reduced form
 inverse(substitute(submatrix(Mr, {0,1}),QQ))*Mr

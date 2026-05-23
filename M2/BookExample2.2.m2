@@ -2,3 +2,4 @@ R = QQ[x_1,x_2,x_3]
 
 p = (1/2)+x_1^2*x_2*x_3^4+(6/5)*x_1*x_3+2
 
+-- output is a polynomial in R
