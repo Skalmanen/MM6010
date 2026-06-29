@@ -17,13 +17,18 @@ Let $I \subseteq k[\vectorComponents{x}]$ be an ideal different from the empty o
     \item\label{it:lt-generators} There are $\vectorComponentsX{g}{t} \in I$ such that
           $\ideal{LT(I)} = \ideal{LT(g_1), \dots, LT(g_t)}$.
 \end{enumerate}
+\begin{proof}
+    \begin{enumerate}
+        \item Since we have used the leading term to construct an ideal, the difference between the monomial ideal and $\ideal{LT(I)}$ is a nonzero constant. These two equal each other [\cite{Theory}].  
+        \item Dicksons Lemma tells us that monomial ideals are finitely generated. Since $\ideal{LT(I)}$ only differs from a monomial ideal by a nonzero constant, Dicksons lemma can be applied here as well. \cite{Theory}. 
+    \end{enumerate}    
+\end{proof}
 \end{proposition}
 
-\begin{proof}
-\begin{enumerate}
-    \item Since we have used the leading term to construct an ideal, the difference between the monomial ideal and $\ideal{LT(I)}$ is a nonzero constant. These two equal each other [\cite{Theory}].  
-    \item Dicksons Lemma tells us that monomial ideals are finitely generated. Since $\ideal{LT(I)}$ only differs from a monomial ideal by a nonzero constant, Dicksons lemma can be applied here as well. \cite{Theory}. 
-\end{enumerate}    
-\end{proof}
+With all this information accumulated, we can formally prove that every polynomial ideal has a finite generating set. This theorem is known as the Hilber Basis Theorem.
 
-Theorem 4 (Hilbert Basis Theorem). Every ideal has a finite generating set. Proof missing.
+\begin{theorem}
+   Every Ideal $I \in k \lbrack \vectorComponents{x} \rbrack $ has a finite generating set. In other words, $ I = \ideal{\vectorComponentsX{g}{t}}$ for some $\vectorComponentsX{g}{t} \in I$.
+\end{theorem}
+
+Proof is given in chapter 2 of Cox \cite{Theory} as Theorem 4 on page 77. 
