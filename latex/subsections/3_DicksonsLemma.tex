@@ -3,7 +3,7 @@ The ideal description problem formulates the bridge between the abstract and mac
 Much like when introducing affine varieties, starting with a single monomial instead of the combination of them reduces complexity. So, when studying the ideals, we start with the same logic of considering a smaller problem. Consider the following definition.
 
 \begin{definition}
-    An ideal $I \subseteq k[\vectorComponents{x}]$ is a monomial ideal that is determined by a set $A$ of integers. All polynomials in the ideal can be written as a linear combination of $\sum_{\alpha \in A} h_\alpha x^\alpha$ where $h_\alpha$ lies in $k[\vectorComponents{x}]$. 
+    An ideal $I \subseteq k[\vectorComponents{x}]$ is a monomial ideal that is determined by a set $A \subset \Z^n$. All polynomials in the ideal can be written as a linear combination of $\sum_{\alpha \in A} h_\alpha x^\alpha$ where $h_\alpha$ lies in $k[\vectorComponents{x}]$. 
 \end{definition}
 
 A quick tip when dealing with monomial ideals: they can largely be thought of as their exponents. This is their main benefit and why they are important when dealing with computer algebra systems. We will see this property shine in the coming proofs. As an example, consider the following lemma:
