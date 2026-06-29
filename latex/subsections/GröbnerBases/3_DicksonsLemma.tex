@@ -1,29 +1,3 @@
-The ideal description problem formulates the bridge between the abstract and machine world. It does this by concretizing the abstract concept of an ideal to a tangible set of generating polynomials that can be interacted with and evaluated. In order to bridge this gap, finite polynomials have to be found. Starting off with monomial ideals in $k[\vectorComponents{x}]$ is the best way to do so. 
-
-Much like when introducing affine varieties, starting with a single monomial instead of the combination of them reduces complexity. So, when studying the ideals, we start with the same logic of considering a smaller problem. Consider the following definition.
-
-\begin{definition}
-    An ideal $I \subseteq k[\vectorComponents{x}]$ is a monomial ideal that is determined by a set $A \subset \Z^n$. All polynomials in the ideal can be written as a linear combination of $\sum_{\alpha \in A} h_\alpha x^\alpha$ where $h_\alpha$ lies in $k[\vectorComponents{x}]$. 
-\end{definition}
-
-A quick tip when dealing with monomial ideals: they can largely be thought of as their exponents. This is their main benefit and why they are important when dealing with computer algebra systems. We will see this property shine in the coming proofs. As an example, consider the following lemma:
-
- \begin{lemma}
-    Let $ I = \ideal{x^\alpha | \alpha \in A}$ be a monomial ideal. Then a monomial $x^\beta$ lies in $I$ if and only if $x^\beta$ is divisible by $x^\alpha$ for some $\alpha \in A$. 
- \end{lemma}
-
- \begin{proof}
-    This can be proven by considering the exponents. Starting off with showing $x^\beta$ to $x^\alpha$, the exponents can be leveraged. If $\beta$ is a multiple of $\alpha$ then $x^\beta$ is in the ideal by definition since $x^\alpha$ generates the ideal. The other way around is slightly trickier. Using the definition of the monomial ideal, we can write $x^\beta$ as the polynomial sum of generators of the monomial ideal and then write $ h_i$ as the sum of generators again.
-     
- \begin{equation}
-    x^\beta = \sum_{i = 1}^{s} h_i x^{\alpha(i)} = \sum_{i = 1}^{s}\bigg(\sum_{j}c_{i,j}x^{\beta (i,j)}\bigg)x^{\alpha(i)} = \sum_{i,j} c_{i,j}x^{\beta (i,j)}x^{\alpha(i)}
- \end{equation}
-
- Here we can see that every term on the right hand side is divisible by $x^\alpha$, so then $x^\beta$ on the left hand side must also be so. This proves that we can follow our intuition regarding the exponents and their divisibility much closer. After all, it goes both ways.
-
- \end{proof}
-
-\subsubsection{Dicksons Lemma}
 This lemma is really the meat of why we are interested in monomial ideals. The ability to reduce ideals to finite generators is the step towards closing the gap between the machine and abstract. 
 
 \begin{theorem}
