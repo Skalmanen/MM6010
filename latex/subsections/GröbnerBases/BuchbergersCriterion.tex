@@ -1,8 +1,17 @@
-
-Another important property is how easily one can verify if a function is in an ideal. The membership problem is solved by dividing $f$ by $G$ and checking if the remainder is zero. If it is, then the function belongs to the ideal. This membership check's concrete nature is useful for computational applications. The following definitions and lemmas are preparatory for algorithmically finding gröbner basis.
+The following definitions and lemmas are preparatory for algorithmically finding gröbner basis. The algorithm itself is discussed in \ref{subsec}
 
 \begin{definition}
     We will write $\sPoly{f}{F}$ for the remainder on division of $f$ by the ordered s-tuple $F = (\vectorComponentsX{f}{s})$. If $F$ is a Gröbner basis for $\ideal{\vectorComponentsX{f}{s}}$, then we can regard F as a set. 
 \end{definition}
 
-Now that we have a consise way to refer to the remainder of a division by two arbitrary parameters, our dialog around the subject will be less cluttered. A deterministic approach to cancelling leading terms would help in the construction of our algorithm. Below is 
+Now that we have a consise way to refer to the remainder of a division by two arbitrary parameters, our dialog around the subject will be less cluttered. A deterministic approach to cancelling leading terms would help in the construction of our algorithm. Below is a definition that introduces the tool we will use to craft the algorithms kernel. 
+
+\begin{definition}
+    Let $f,g \in \polyRing$ be nonzero polynomials.
+    
+    \begin{enumerate}
+        \item If multideg$(f) = \alpha$ and multideg$(g) = \beta$, then let $\gamma = \vectorComponentsX{\gamma}{n}$, where $\gamma_i = max(\alpha_i, \beta_i)$
+        
+    \end{enumerate}
+
+\end{definition}

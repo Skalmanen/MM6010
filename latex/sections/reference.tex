@@ -1,6 +1,7 @@
 % your first section
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \section{Introduction}
+\label{sec:reference-intro}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -13,16 +14,17 @@ You can also use swedish letters ä ö å, Ä, Ö, Å. Unicode characters in gen
 %Another section
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \section{Theorems and definitions}
+\label{sec:theorems-definitions}
 
 \begin{definition}
 This is a definition!
 \end{definition}
 
-\begin{theorem}\label{thm: label}
+\begin{theorem}\label{thm:label}
 This is a theorem!
 \end{theorem}
 
-To cross reference: By Theorem~\ref{thm: label} we can say...
+To cross reference: By Theorem~\ref{thm:label} we can say...
 \begin{lemma}
 This is a lemma.
 \end{lemma}
@@ -31,7 +33,7 @@ Put here the proof of the lemma!
 \end{proof}
 
 
-\begin{proof}[Proof of Theorem \ref{thm: label}]
+\begin{proof}[Proof of Theorem \ref{thm:label}]
 Another proof
 \end{proof}
 
@@ -74,9 +76,11 @@ This is usually rare, it is better to thank them in the acknowledgements section
 %another section
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \section{Tables and graphs}
+\label{sec:tables-and-graphs}
 Here a few examples of tables and graphs.
 %A subsection
 \subsection{Tables}
+\label{ssec:tables}
 \begin{center}
 \begin{tabular}{c c c c c c c c}
 \arrayrulecolor{Azzurro}
@@ -102,12 +106,14 @@ Here a few examples of tables and graphs.
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 
 \section{Insert a figure}
+\label{sec:insert-figure}
 \begin{figure}[H]
 \centering
-\caption{\label{fig:1} put the caption here}
+\caption{\label{fig:insert-figure} put the caption here}
 \end{figure}
 
 \subsection{Footnote}
+\label{ssec:footnote}
 
 You can create a footnote like this.\footnote{I created a footnote.}
 
@@ -115,6 +121,7 @@ You can create a footnote like this.\footnote{I created a footnote.}
 
 \clearpage{\thispagestyle{empty}\cleardoublepage}
 \section{Conclusion}
+\label{sec:conclusion}
 
 Remember the internet is full of places that can help you write a beautiful document with latex.
 Some example are \url{overleaf.com} and \verb!stackexchange! just ask Google! 
