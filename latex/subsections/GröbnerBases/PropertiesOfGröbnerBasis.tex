@@ -12,11 +12,3 @@ A problem that arises when performing multivariate division is that the order in
         Consider the division algorithm $f = q_1 g_1 \dots + q_n g_n + r $. Every $LT(g_t)$ is already divided out. In other words, if r had been divisible by the lead term there would have been a corrosponding $q_t$ to engulf it. That proves $(1)$. $(2)$ is solved by considering the fact that we are operating with gröbner basis; we must leverage our ability to show that $\specialGrobCondition$. To prove uniqueness, assume that the remainder is non-unique and use lemma \ref{lemma:4.2} to disprove that assumption. In other words: assume that $f = g + r = g' + r'$ follows our proposition. Rearranging, $r-r'= g-g'\in I$. Now, using the special property of the basis, $LT(r-r') \in \specialGrobCondition$. Since $LT(r-r')$ is on $LT(g_i)$, then it is also divisible by that same $LT(g_i)$. Using the first property, $r - r'$ cannot be divided by $LT(g_i)$, so in order for the division to succeed, $r - r' = 0$. This contridict the assumption that $r$ was non-unique.   
     \end{proof}
 \end{proposition}
-
-Another important property is how easily one can verify if a function is in an ideal. The membership problem is solved by dividing $f$ by $G$ and checking if the remainder is zero. If it is, then the function belongs to the ideal. This membership check's concrete nature is useful for computational applications. The following definitions and lemmas are preparatory for algorithmically finding gröbner basis.
-
-\begin{definition}
-    We will write $\sPoly{f}{F}$ for the remainder on division of $f$ by the ordered s-tuple $F = (\vectorComponentsX{f}{s})$. If $F$ is a Gröbner basis for $\ideal{\vectorComponentsX{f}{s}}$, then we can regard F as a set. 
-\end{definition}
-
-Now that we have a consise way to refer to the remainder of a division by two arbitrary parameters, our dialog around the subject will be less cluttered. A deterministic approach to cancelling leading terms would help in the construction of our algorithm. Below is 
