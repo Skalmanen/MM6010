@@ -1,4 +1,4 @@
-The following definitions and lemmas are preparatory for algorithmically finding gröbner basis. The algorithm itself is discussed in \ref{subsec}
+The following definitions and lemmas are preparatory for algorithmically finding gröbner basis. The algorithm and my implementation using Macaulay2 can be found in section \ref{sec:buchberger-algorithm}.
 
 \begin{definition}
     We will write $\sPoly{f}{F}$ for the remainder on division of $f$ by the ordered s-tuple $F = (\vectorComponentsX{f}{s})$. If $F$ is a Gröbner basis for $\ideal{\vectorComponentsX{f}{s}}$, then we can regard F as a set. 
@@ -10,8 +10,47 @@ Now that we have a consise way to refer to the remainder of a division by two ar
     Let $f,g \in \polyRing$ be nonzero polynomials.
     
     \begin{enumerate}
-        \item If multideg$(f) = \alpha$ and multideg$(g) = \beta$, then let $\gamma = \vectorComponentsX{\gamma}{n}$, where $\gamma_i = max(\alpha_i, \beta_i)$
+        \item If multideg$(f) = \alpha$ and multideg$(g) = \beta$, then let $\gamma = (\vectorComponentsX{\gamma}{n})$, where $\gamma_i = max(\alpha_i, \beta_i)$ for each $i$. We call $x^\gamma$ the least common multiple of $LM(f)$ and $LM(g)$, written $x^\gamma = $ lcm$(LM(f), LM(g))$.
         
+        \item The S-polynomial of $f$ and $g$ is the combination 
+        \begin{equation}
+            S(f,g) = \frac{x^\gamma}{LT(f)} \cdot f -\frac{x^\gamma}{LT(g)} \cdot g 
+        \end{equation}
     \end{enumerate}
-
 \end{definition}
+
+Let us explore the definition provided by the book \cite{Theory}. Our numerators share the extracted least common multiple. The other interesting part is that the incoming parameterized funtions, $f,g$, are being divided by their own leading term. It seems as if though the least common multiple ensures that a cancellation occurs. In other words, this S-polynomial could be an engine for reducing the degree of polynomials. The next lemma showcases an exiting part of mathematics. Namely, validating intuition.
+
+\newcommand{\generalSum}[4]{\sum_{#1=#2}^#3 #4}
+\newcommand{\sPolySum}{\generalSum{i}{1}{s}{p_i}}
+\newcommand{\multDeg}[1]{multdeg(#1)}
+\newcommand{\spolyFunction}[3]{S(#1_#2, #1_#3)}
+\begin{lemma}
+    Suppose we have a sum $\sPolySum$ where multideg$(p_i) = \delta \in \Z_{n}^{\geq 0}$ for all i. If $\multDeg{\sPolySum} < \delta$, then $\sPolySum$ is a linear combination with coefficients in k, of the S-polynomials $(S(p_j, p_l))$ for $i \leq j, l\leq s$. Furthermore, each $(S(p_j, p_l))$ has multidegree $<\delta$.
+\end{lemma}
+
+Cox and his book \cite{Theory} wonderfully turns our attention to an interesting idea. The assumption made in the lemma relies heavily on the properties of the s-polynomial. The written proof exists in the book in chapter 2.6 as Lemma 5. The intuition to extract from the proof can be described as follows. 
+
+Consider an addition of polynomials, all of them equal in multidegree, summing to a lesser multidegree. If you can find an example of that, this lemma ensures that you can rewrite that addition of polynomials as an addition of s-polynomials. Using this fact, the criteria for admission into the gröbner basis can be created. 
+
+\begin{theorem}[Buchberger’s Criterion]
+    Let I be a polynomial ideal. Then a basis G = ${\vectorComponentsX{g}{t}}$ of I is a Gröbner basis of I if and only if for all pairs i $\neq j$ the remainder, $\sPoly{\spolyFunction{g}{i}{j}}{G}$, of division is zero. 
+\end{theorem}
+
+Here, the theoretical implementation is exposed. All one has to do to find a Gröbner basis is to simply check all the $g_t$s against each other using the constructed s-polynomial. If a nonzero remainder is found, a new $g_{t+1}$ is added to the basis being generated. If the remainder is zero, then we are positive that we have a gröbner basis.
+
+\begin{proof}
+    $\rightarrow$ If $G$ is a gröbner basis, then we are trying to prove the remainder $\sPoly{\spolyFunction{g}{i}{j}}{G}$ is $0$. Leveraging the problem of memebership, we can recall that the remainder would be $0$ for all members of the gröbner basis. Since all of the s-polynomials are on $I$, the remainder is $0$.
+
+    $\leftarrow$ Proving the other way is more involved. We start by letting $f\in I$ be nonzero. We will prove that $LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}$. Consider the functions:
+    \[
+        f = \generalSum{i}{1}{t}{h_i g_i}, h_i \in \polyRing
+    \]
+    \[
+        \text{multdeg}(f) = \max \bigl\{ \text{multdeg}(h_i g_i) \bigm| h_i g_i \neq 0 \bigr\}
+    \]
+    
+    This fuction f will be parsed into the following function and then minimize delta: $ \delta = $. The minimization can occurs due to our well ordering. Now this theorem splits into two cases. 
+\end{proof}
+
+
