@@ -43,14 +43,42 @@ Here, the theoretical implementation is exposed. All one has to do to find a Gr�
     $\rightarrow$ If $G$ is a gröbner basis, then we are trying to prove the remainder $\sPoly{\spolyFunction{g}{i}{j}}{G}$ is $0$. Leveraging the problem of memebership, we can recall that the remainder would be $0$ for all members of the gröbner basis. Since all of the s-polynomials are on $I$, the remainder is $0$.
 
     $\leftarrow$ Proving the other way is more involved. We start by letting $f\in I$ be nonzero. We will prove that $LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}$. Consider the functions:
-    \[
+
+    \begin{equation}
         f = \generalSum{i}{1}{t}{h_i g_i}, h_i \in \polyRing
-    \]
-    \[
-        \text{multdeg}(f) = \max \bigl\{ \text{multdeg}(h_i g_i) \bigm| h_i g_i \neq 0 \bigr\}
-    \]
+        \label{eq:criterionf}
+    \end{equation}  
+    \begin{equation}
+        \text{multdeg}(f) \leq \max \bigl\{ \text{multdeg}(h_i g_i) \bigm| h_i g_i \neq 0 \bigr\}
+        \label{eq:criterionMultF}
+    \end{equation}  
+    \begin{equation}
+        \delta = \max_{1\leq i \leq t} \bigl\{\text{multdeg}(h_i g_i)\bigr\}
+        \label{eq:criterionDelta}
+    \end{equation}        
     
-    This fuction f will be parsed into the following function and then minimize delta: $ \delta = $. The minimization can occurs due to our well ordering. Now this theorem splits into two cases. 
+    By equations \ref{eq:criterionMultF} and \ref{eq:criterionDelta} we can arrive at the fact $\text{multdeg}(f) \leq \delta$. In addition to this, we will also minimize the $\delta$. Since we have that $\text{multdeg}(f) \leq \delta = \min  \text{multdeg}(f)$, there needs to be two seperate cases.
+
+    \begin{enumerate}
+        \item $\text{multdeg}(f) = \delta$. Then, $LT(f)$ is divisible by $LT(g_i)$ since the gröbner base produces all leading terms in the ideal. In other words:
+        \[
+            LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}
+        \]
+
+       \item $\text{multdeg}(f) < \delta$.
+    \end{enumerate}
+
+    Proving $\text{multdeg}(f) < \delta$ requires rigor. Lets us first state an assumption which we will operate upon: $\delta$ has been minimized and cannot be reduced further. That assumption can be broken if we can prove that $\delta$ could be reduced to the $\text{multdeg}(f) = \delta$ case.
+
+    We do this by considering an f with a minimum $\delta$. Split the sum into its two components. 
+\begin{equation}
+    \begin{aligned}
+    f
+    &= \sum_{\text{multdeg}(h_i g_i)=\delta} h_i g_i
+    + \sum_{\text{multdeg}(h_i g_i)<\delta} h_i g_i \\
+    &= \text{sda}
+    \end{aligned}
+\end{equation}
 \end{proof}
 
 
