@@ -1,10 +1,10 @@
-To start the bridge between the world of Algebra as we know it and geometry, there must be an established way to discuss geometry algebraically. This is where the concepts of affine spaces comes in.  
+To start the bridge between the world of algebra as we know it and geometry, there must be an established way to discuss geometry algebraically. This is where the concepts of affine spaces come in.  
 
-Also talk about what geometry actually is in this context (points and lines and functions and so on)
+Also talk about what geometry actually is in this context (points, lines, and functions, and so on).
 
-This concept allows the analyzer to view the geometry algebraically. However, this is not the end goal, but an analytic step between geometry and the more powerful algebraic tools that we want to apply to geometry. 
+This concept allows the analyst to view geometry algebraically. However, this is not the end goal, but an analytic step between geometry and the more powerful algebraic tools that we want to apply to geometry. 
 
-Relate also how vector spaces and affine spaces use maps. 
+It is also worth relating how vector spaces and affine spaces use maps. 
 
 " The geometric properties of a vector space are invariant
 under the group of bijective linear maps, whereas the geometric properties
@@ -41,7 +41,7 @@ In order to understand affine varieties, affine spaces must be understood. This 
 
 A quick note of importance on each axiom. If you start at point a and do nothing, you should still be at a. This seems obvious and silly to include, but these are axiomatic assumptions. We must treat them with the respect they deserve. Axiom two deals with the associative property. The fact that the order of operations makes little difference to the outcome is of great interest. To simply calculations algebraically, rearranging order is always of interest. The last axiom, that of uniqueness is also of importance. Being able to assume that an unique element in $\vec{E}$ always exists that can connect two points $a$ and $b$ is useful when solving these problems on a higher level of abstraction. 
 
-The definition lengthy, but the intuition should be clear when considering figure \ref{fig:affine-space}. Here a seperation between the vectors and the points \textit{to which the vector is applied to} should be noted. These two can be defined independently. This seperation is exactly what enabled coordinate-agnostic property that is of interest. 
+The definition is lengthy, but the intuition should be clear when considering Figure \ref{fig:affine-space}. Here a separation between the vectors and the points \textit{to which the vector is applied} should be noted. These two can be defined independently. This separation is exactly what enabled the coordinate-agnostic property that is of interest. 
 
 A supplemental definition will be provided for the affine to clear up any confusion. 
 
@@ -53,7 +53,7 @@ A supplemental definition will be provided for the affine to clear up any confus
     Where $\vec{\K^n}$ is the vector space of translations, and + denotes the action of shifting a point by a vector via component-wise addition.
 \end{example}
 
-This supplement elucidates the uncertainty behind how this space is defined as all other spaces. It's vector space has translations and they are restricted to the field upon which they operate.
+This supplement elucidates the uncertainty behind how this space is defined, as with all other spaces. Its vector space has translations, and they are restricted to the field upon which they operate.
 
 \subsubsection{Polynomials in Affine Spaces}
     \label{sssec:polynomials-in-affine-spaces}
@@ -62,7 +62,7 @@ It is time to relate the previously discussed polynomial to affine spaces. Lever
     p : \K^n  \rightarrow \K
 \end{equation}
 
-The function maps the multidimensional field onto the monodimension. This $p$ takes any $\hat{x} \in \K$ and associates a unique $p(\hat{x})$ to it. This is done easily by substituting $x = \hat{x}$ in the polynomial p. One important note is relevant to the zeros of $p$ when taking $\K$ as a infinite field (e.g. $\Z, \R$). Then $p$ is the zero polynomial if and only if $p(\hat{x}) = 0$ for all $\hat{x} \in \K$.  
+The function maps the multidimensional field onto the one-dimensional codomain. This $p$ takes any $\hat{x} \in \K^n$ and associates a unique $p(\hat{x})$ to it. This is done easily by substituting $x = \hat{x}$ in the polynomial $p$. One important note is relevant to the zeros of $p$ when taking $\K$ as an infinite field (e.g. $\mathbb{Z}, \mathbb{R}$). Then $p$ is the zero polynomial if and only if $p(\hat{x}) = 0$ for all $\hat{x} \in \K^n$.  
 
 \subsubsection{Affine Varieties}
 \label{sssec:affine-varieties}
@@ -86,6 +86,6 @@ With an understanding of how the space we will operate upon will work, the first
     \label{fig:variety-example}
 \end{figure}
 
-In other words, the affine variety is the set of $(\vectorComponents{a})$ that solve all the equations in the variety simultaneously. It is the intersection of all the polynomial's roots. Even though $\boldsymbol{V}$ might simply look like a graphed equation, figure \ref{fig:varietyExample}a provides the base for intuition. While it may look like a regular circular graph, with familiar $x$ and $y$ coordinates, the keen observer will note that we are dealing with two dimensions, $x_1, x_2$ and that the graph is in fact the where this polynomial studied is equal to $0$. If we extract the polynomial from the variety and set it to $0$, we end up with $x_1^2 + x_2^2 = 1$. Graphing this equation makes the affine variety clear, but it is not necessary. This is especially true we are interested in $n$ dimensions. 
+In other words, the affine variety is the set of $(\vectorComponents{a})$ that solve all the equations in the variety simultaneously. It is the intersection of all the polynomial roots. Even though $\boldsymbol{V}$ might simply look like a graphed equation, Figure \ref{fig:varietyExample}a provides the basis for intuition. While it may look like a regular circular graph, with familiar $x$ and $y$ coordinates, the keen observer will note that we are dealing with two dimensions, $x_1, x_2$, and that the graph is in fact the set where this polynomial is equal to $0$. If we extract the polynomial from the variety and set it to $0$, we end up with $x_1^2 + x_2^2 = 1$. Graphing this equation makes the affine variety clear, but it is not necessary. This is especially true when we are interested in $n$ dimensions. 
 
  While the above example may make sense, confusion remains as to what the difference between the variety and simply graphing the equation \textit{is}. This difference is made clear by inspecting \ref{fig:varietyExample}c. Here, just as in \ref{fig:varietyExample}a, we graph the solution of each individual \textit{polynomial} separately. Once we have the individual solutions, we must find their intersection, as that is where the affine variety lies. The difference between an affine variety and simply graphing the solutions to the individual equations becomes clear in higher dimensions. 
