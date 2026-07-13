@@ -26,7 +26,8 @@ Let us explore the definition provided by the book \cite{Theory}. Our numerators
 \newcommand{\multDeg}[1]{multdeg(#1)}
 \newcommand{\spolyFunction}[3]{S(#1_#2, #1_#3)}
 \begin{lemma}
-    Suppose we have a sum $\sPolySum$ where multideg$(p_i) = \delta \in \Z_{n}^{\geq 0}$ for all i. If $\multDeg{\sPolySum} < \delta$, then $\sPolySum$ is a linear combination with coefficients in k, of the S-polynomials $(S(p_j, p_l))$ for $i \leq j, l\leq s$. Furthermore, each $(S(p_j, p_l))$ has multidegree $<\delta$.
+    Suppose we have a sum $\sPolySum$ where multideg$(p_i) = \delta \in \Z_{n}^{\geq 0}$ for all i. If $\multDeg{\sPolySum} < \delta$, then $\sPolySum$ is a linear combination with coefficients in k, of the S-polynomials $S(p_j, p_l)$ for $i \leq j, l\leq s$. Furthermore, each $S(p_j, p_l)$ has multidegree $<\delta$.
+    \label{lemma:5}
 \end{lemma}
 
 Cox and his book \cite{Theory} wonderfully turns our attention to an interesting idea. The assumption made in the lemma relies heavily on the properties of the s-polynomial. The written proof exists in the book in chapter 2.6 as Lemma 5. The intuition to extract from the proof can be described as follows. 
@@ -70,15 +71,21 @@ Here, the theoretical implementation is exposed. All one has to do to find a GrÃ
 
     Proving $\text{multdeg}(f) < \delta$ requires rigor. Lets us first state an assumption which we will operate upon: $\delta$ has been minimized and cannot be reduced further. That assumption can be broken if we can prove that $\delta$ could be reduced to the $\text{multdeg}(f) = \delta$ case.
 
-    We do this by considering an f with a minimum $\delta$. Split the sum into its two components. 
+    We do this by considering an f with a minimum $\delta$. Split the sum into its two components and then extract the leading term for each iteration of $i$.
 \begin{equation}
     \begin{aligned}
     f
     &= \sum_{\text{multdeg}(h_i g_i)=\delta} h_i g_i
     + \sum_{\text{multdeg}(h_i g_i)<\delta} h_i g_i \\
-    &= \text{sda}
+    &= \sum_{\text{multdeg}(h_i g_i)=\delta} LT(h_i) g_i 
+    + \sum_{\text{multdeg}(h_i g_i) = \delta} (h_i-LT(h_i)) g_i
+    + \sum_{\text{multdeg}(h_i g_i)<\delta} h_i g_i
     \end{aligned}
 \end{equation}
+
+It is clear that the second and third terms monomials of of the second line all have degrees lesser than $\delta$. So, we can focus our attention solely on the monomials of the sum that includes the leading term. This is since if we can prove that the monomials in the sum of the leading terms is less than $\delta$, then the claim of $\delta$ minimal property is contradicted. This is where our well studied S-polynomial is used. 
+
+Since the sum of all the sums is less than $\delta$, our leading term sum must also be less that $\delta$. But this was the exact definition from lemma \ref{lemma:5}. So we can rewrite the sum of leading terms as a combination of S-polynomials. After alot of rearranging and proving that the S-polynomial of two functions can be rewritten as a constant times an s-polynomial of the $g_i$ due to $\sPoly{\spolyFunction{g}{i}{j}}{G}$. After that, one can rearrange the monomials $LT(h_i)g_i$ to be a monomial that is always less than $\delta$.
 \end{proof}
 
-
+This criterion is the primary tool for the algorithm that is going to be constructed and programmed. By having a concrete way of checking if a function is part of the grÃ¶bner basis. 
