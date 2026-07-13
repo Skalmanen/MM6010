@@ -12,7 +12,7 @@ Division algorithms have been of interest for mathematicians for a long time. Eu
 \While{$r \neq 0$ AND deg$(r)<$ deg$(g)$}
     \State $t \gets \operatorname{LT}(r) / \operatorname{LT}(g)$
     \State $q \gets q+t$
-    \State $r \gets r - t*g$
+    \State $r \gets r - g t$
 \EndWhile
 
 \State \Return $ (q,r)$
@@ -40,10 +40,10 @@ The first algorithm I tried writing was \ref{lst:algorithm121}. This is basic un
     \State divionOccured $\gets $ false
 
     \While{$i \leq n$ AND divionOccured $=$ false}
-        \If{$\operatorname{LM}(f) \bmod \operatorname{LM}(g_i) = 0$}
+        \If{$\operatorname{LM}(f) \mid \operatorname{LM}(g_i) = 0$}
             \State $t \gets f/g_i$
             \State $q_i \gets q_i + t$
-            \State $f \gets f - tg_i$
+            \State $f \gets f - g_it$
             \State divionOccured $=$ true 
         \Else
             \State $i \gets i + 1$
