@@ -41,9 +41,9 @@ Consider an addition of polynomials, all of them equal in multidegree, summing t
 Here, the theoretical implementation is exposed. All one has to do to find a Gröbner basis is to simply check all the $g_t$s against each other using the constructed s-polynomial. If a nonzero remainder is found, a new $g_{t+1}$ is added to the basis being generated. If the remainder is zero, then we are positive that we have a gröbner basis.
 
 \begin{proof}
-    $\rightarrow$ If $G$ is a gröbner basis, then we are trying to prove the remainder $\sPoly{\spolyFunction{g}{i}{j}}{G}$ is $0$. Leveraging the problem of memebership, we can recall that the remainder would be $0$ for all members of the gröbner basis. Since all of the s-polynomials are on $I$, the remainder is $0$.
+    $\Rightarrow$ If $G$ is a gröbner basis, then we are trying to prove the remainder $\sPoly{\spolyFunction{g}{i}{j}}{G}$ is $0$. Leveraging the problem of memebership, we can recall that the remainder would be $0$ for all members of the gröbner basis. Since all of the s-polynomials are on $I$, the remainder is $0$.
 
-    $\leftarrow$ Proving the other way is more involved. We start by letting $f\in I$ be nonzero. We will prove that $LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}$. Consider the functions:
+    $\Leftarrow$ Proving the other way is more involved. We start by letting $f\in I$ be nonzero. We will prove that $LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}$. Consider the functions:
 
     \begin{equation}
         f = \generalSum{i}{1}{t}{h_i g_i}, h_i \in \polyRing
