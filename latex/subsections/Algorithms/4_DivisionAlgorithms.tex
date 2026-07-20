@@ -1,8 +1,8 @@
-Division algorithms have been of interest for mathematicians for a long time. Euclids algorithm, one of the oldest algorithms created, has applications in for division as well. Basic arithmetic with additions, subtraction, and multiplication can be constrained to $\Z$, the integers, while the introduction of division necessitates an entirely different way of interacting with numbers, $\Q$, the rationals. Division is useful, so a mathematical programming language must be equipped with ways to handle division. Macaulay2 has various ways of dividing, but attempting to extending it to divide polynomials left me with a m ultitude of problems, highlighting how complicated algebra can actually be. 
+Division algorithms have been of interest for mathematicians for a long time. Basic arithmetic with additions, subtraction, and multiplication can be constrained to $\Z$, the integers, while the introduction of division necessitates an entirely different way of interacting with numbers, $\Q$, the rationals. Division is useful, so a mathematical programming language must be equipped with ways to handle division. Macaulay2 has various ways of dividing, and actually offers built in support for polynomial division. However, the division algorithm seemed like a fitting first challenge. Attempting to extend it to divide polynomials left me with a multitude of problems, highlighting how exercises are the best way to learn a new subject in mathematics. 
 
 \subsubsection{Univariate Division Algorithm}
 \label{sssec:univariate-division-algorithm}
-\begin{algorithm}
+\begin{algorithm}[ht]
 \caption{Univariate Division Algorithm}
 \begin{algorithmic}[1]
 \Require Functions $p,g$
@@ -19,11 +19,14 @@ Division algorithms have been of interest for mathematicians for a long time. Eu
 \end{algorithmic}
 \end{algorithm}
 
-The first algorithm I tried writing was \ref{lst:algorithm121}. This is basic univariate polynomial division, something that most high schoolers learn. The algorithm is rather simple. Take the leading term of the numerator and divide it by the denominator. Add the quotient to the result and subtract the quotient times the denominator from the numerator. Repeat until the numerator is zero or the degree of the denominator exceeds that of the numerator. None of the ordering issues or really anything at all is difficult in this case. The built in division operator works without any issues. Filled with confidence, the multivariate algorithm was attempted. 
+The first algorithm I tried writing was the univariate polynomial division, see code in appendix \ref{lst:algorithm121}. The algorithm is straight forward: take the leading term of the numerator and divide it by the denominator. Add the quotient to the result and subtract the quotient times the denominator from the numerator. Repeat until the terminate condition is hit:either the numerator is zero, and there is nothing to divide, or the degree of the denominator exceeds that of the numerator, and division is not possible. Theoretically and practically, it was simple.
 
 \subsubsection{Multivariate Division Algorithm}
 \label{sssec:multivariate-division-algorithm}
-\begin{algorithm}
+
+The idea behind the multivariate division algorithm is similar to the univariate one. Divide a polynomial $p$ by an array of polynomials $\vectorComponentsX{g}{s}$. If the leading term of $p$ cannot be divided by the leading term of $g_1$, move on to the next until a $g_i$ that can divide $p$ is found. If no leading term of $\vectorComponentsX{g}{s}$ can divide the leading term of $p$, then the leading term $p$ is subtracted from itself and the algorithm marches to the next polynomial. 
+
+\begin{algorithm}[ht]
 \caption{Multivariate Division Algorithm}
 \begin{algorithmic}[1]
 
@@ -33,24 +36,24 @@ The first algorithm I tried writing was \ref{lst:algorithm121}. This is basic un
 
 \State $r \gets 0$ 
 \State $f \gets p$
-\State $q_s \gets$ empty collection of length $n$ 
+\State $q_s \gets {}$ 
 
 \While{$f \neq 0$}
     \State $i \gets 0$
-    \State divionOccured $\gets $ false
+    \State divisionOccurred $\gets $ false
 
-    \While{$i \leq n$ AND divionOccured $=$ false}
+    \While{$i \leq n$ AND divisionOccurred $=$ false}
         \If{$\operatorname{LM}(f) \mid \operatorname{LM}(g_i) = 0$}
             \State $t \gets f/g_i$
             \State $q_i \gets q_i + t$
             \State $f \gets f - g_it$
-            \State divionOccured $=$ true 
+            \State divisionOccurred $=$ true 
         \Else
             \State $i \gets i + 1$
         \EndIf
     \EndWhile
 
-    \If{divisionOccured $=$ false}
+    \If{divisionOccurred $=$ false}
             \State $ r \gets r + \operatorname{LT}(f)$
             \State $ f \gets f - \operatorname{LT}(f)$
     \EndIf
@@ -60,10 +63,6 @@ The first algorithm I tried writing was \ref{lst:algorithm121}. This is basic un
 \end{algorithmic}
 \end{algorithm}
 
-The idea behind the multivariate division algorithm is not much different that the univariate one. Divide a polynomial $p$ by an array of polynomials $gs$. If the leadterm of $p$ cannot be divided by the leadterm of the first polynomial of $gs$, move on to the next until one is that can is found. If no leading term of $gs$ can divide the leading term of $p$, then the leading term is subtracted from $p$ and the algorithm marches to the next polynomial. Seems easy enough, but there is quite a lot of complexity hiding between the lines. The first complexity had to do with the fact that there are more dimensions. Dividing with one dimension is easy enough, but when more are introduced, a way to organize the different dimensions is required. MonomialOrdering is introduced to solve this problem. 
+While theoretically simple again, implementational  complexity exists. One such complexity arises from ring division. With the addition of the higher dimension, the regular division was giving fractions of rings. This is problematic as the return $(q_s,r)$ need to be members of the same ring as $p$. To solve this, a function that decomposed the polynomials into lists of monomials, coefficients, and exponents was created. The function would generate a list of the exponents taking the ring elements into account. So, as an example, if the ring is $Q[x,y,z]$, the polynomial $x^2*z$ would be decomposed into $\{2,0,1\}$. By creating these lists and subtracting the exponents from each other, monomial division has occurred. All remaining would be to recreate the polynomial using the generators of the ring and raise them to the exponent in the listed order. Here my lacking understanding of Macaulay2, and more generally ring algebra, is evident. The generators of the ring, and the ring itself are different. In my implementation (appendix \ref{lst:algorithm123}) the line 63 states the following: toList gens ring $p$. Here, we find the ring of polynomials $p$, find the generators of the ring, and then create a list of them. When reapplying the exponential list to the generators, any reference to the ring itself is lost. The list of generators is simply a list, decoupled from the ring by stateless design.
 
-Another issue was how to divide the leadmonomials. With the addition of the higher dimension, the regular division was giving fractions of rings. This is an issue as the algorithm wants to remain within the ring itself, not outside of the ring. Foolishly, I decided to try and create a leadingTermDivision function that decomposed the polynomials into lists of monomials, coefficients, and exponents. The idea was simple. Macaulay2 generates a list of the exponents taking the ring elements into account. So if the ring as $Q[x,y,z]$, the polynomial $x^2*z$ would be decomposed into $\{2,0,1\}$. By creating these lists and subtracting the exponents from each other, the division has occured. All that would be left would be to recreate the polynomial using the generators of the ring and raise them to the exponent in the listed order. However, here my lacking understanding of Macaulay2 and more generally ring algebra can be seen. The generators of the ring, and the ring itself are different. In line 63 of \ref{lst:algorithm123}, toList gens ring $p$ is used. Here, we find the ring of polynomial p, find the generators of the ring, and then create a list of it. However, when later applying the exponential list to the generators, the returned polynomial is not an element of the ring that the function caller is using. It simply has the same variables. 
-
-Instead of recreating a way to divide monomials or using fractions of rings, there is a division that ensures the result remains in the ring. It does so by using division with remainder. With this realization, the algorithm was ready to be implemented. By first checking if the modulo of the leadmonomial would be $0$, we can ensure that the ring division would not produce a remainder. So if the modulo did produce a remainder, the next $gs$ was considered. If there was no remainder, essentially the univariate case is established. 
-
-One important note here, another reason to use Gröbner bases, is that the order of the polynomials sent in,  $gs$, matter significantly. Different ordering of the $gs$ list generates different results. A test showing this can be found in \ref{lst:algorithm123}. Gröbner bases eliminates this reliance on the order which is desirable.
+Instead of recreating a way to divide monomials or using fractions of rings, Macaulay2 supports division that ensures the result remains in the ring. Thus, the algorithm was ready to be implemented. By first checking if the modulo between the lead monomial of $p$ and $g_i$ would be $0$, we can ensure that the ring division would succeed.

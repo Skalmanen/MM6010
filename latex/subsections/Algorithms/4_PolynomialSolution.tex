@@ -1,11 +1,56 @@
-The polynomial solution was by far the most involved algorithm to construct from a Macaulay2 standpoint. At this point, I was feeling much more comfortable with the language, the syntax no longer holding me back, and a more functional approach being taken. I started by following examples from the book \cite{Applied}, namely \ref{lst:example-1612} and \ref{lst:example-1613}. 
+The polynomial solution was by far the most involved algorithm to construct from a Macaulay2 standpoint. At this point, I was feeling much more comfortable with the language and started by following examples from the book \cite{Applied}, found under appendix \ref{lst:example-1612} and \ref{lst:example-1613}. 
 
 \subsubsection{Book Examples of Polynomial Solutions}
 \label{sssec:book-examples-polynomial-solutions}
-To start off, a simply single variable polynomial is considered. The quotient ring is generated, and the monomial basis is found. This is surprisingly easy in Macaulay2, and most of these complex operations are simply done under the hood. One important note, is that the basis function of Macaulay2 generates elements outside the ring, so a nifty "lift" is used to bring them back in. Consider the fact that $\frac{4}{2}$ can be "lifted" from $\Q$ to $\Z$. After this, we find the Q matrix associated with Z, or $M_z^Q$. While perhaps tedious to do by hand, taking the modulo by the ideal is easy in Macaulay2. Building the coefficients matrix is similarly easy as we simply extract the of the coefficients of the remainder of the modulo with the ideal. All that remains is to raise the matrix to the necessary powers to reconstruct the polynomial that is of interest and one is done. 
+To start off, a simply single variable polynomial is considered. The quotient ring is generated, and the monomial basis is found. The implementation of this algorithm was done with as many built in functions that Macaulay2 has as possible, so most of the complexity is hidden. One important note, is that the "basis" function of Macaulay2 generates elements outside the ring, the "lift" function is used to bring them back into te ring. Consider the fact that $\frac{4}{2}$ can be "lifted" from $\Q$ to $\Z$. After this, we find the $Q$ matrix associated with $Z$, or $M_z^Q$. The first step is to find the quotient of the ring by the ideal and then find the basis of the quotient. Then, loop over the basis and find the modulo of the basis times the polynomial by the ideal. The remainder of this operation will contain coefficients that correspond to the basis. These coefficients are extracted and put into a matrix.
 
-The second book example, \ref{lst:example-1613} complicates things slightly by introducing a second variable. However, at this point I realized that a dedicated function to solving $M^Q$ would be necessary. All that needed to be done was to extract the logic used in \ref{lst:example-1612} and refactored it to its own function. After testing to ensure that they returned the same result, implementing \ref{lst:example-1613} was easy enough. Solving the $M^Q$ is as easy as sending the ring, ideal, and the monomial of interest for the matrix. Solving the eigenvalues is a piece of cake as well with the built in functionality. Filled to the brim with confidence, the main algorithm was attempted. 
+\begin{algorithm}[ht]
+\caption{SolveQMatrix}
+\label{alg:qMatrix}
+\begin{algorithmic}[1]
+\Require A ring,$R$, a zero-dimensional ideal, $I$, and the polynomial to evalaute $p$ .
+\Ensure The matrix, $M_p^Q$. 
+
+\State $ q \gets R / I$
+\State $\vectorComponents{b} \gets$ basis $q$
+\State rows $ \gets \lbrace \rbrace$
+\For{$b_i$ in $\vectorComponents{b}$}
+    \State $r\gets (p \cdot b_i)\mod I$
+    \State rows $\gets$ rows $\cup$ $\lbrace$ coefficients(r) from $\vectorComponents{b} \rbrace$
+\EndFor
+\State $M \gets matrix(\text{rows})$
+\State \Return $M$
+\end{algorithmic}
+\end{algorithm}
+
+The second book example, \ref{lst:example-1613} complicates things slightly by introducing a second variable. However, at this point I realized that a dedicated function to solving $M^Q$ would be necessary. All that needed to be done was to extract the logic used in \ref{lst:example-1612} and refactored it to its own function, see algorithm \ref{alg:qMatrix}. After testing to ensure that they returned the same result, implementing the book example \ref{lst:example-1613} was easy enough. Solving the $M^Q$ is as easy as sending the ring, ideal, and the monomial of interest for the matrix. Solving the eigenvalues uses the built in functionality, so matching the books solution was no problem. 
+
+Again, at this point of the algorithm implementation, I had read the book and familiarized myself with all relevant concepts. But I did not truly understand everything, simply enough to implement the algorithm. 
 
 \subsubsection{Solving a System of Polynomial Equations}
 \label{sssec:solving-system-polynomial-equations}
-This was the final test for everything I had learnt in Macaulay2. Equipped with the function to solve $M^Q$, I thought it would be easy. Starting off, for a ring $R[\vectorComponents{x}]$, all the $M_{x_i}^Q$ had to be found. This was easy enough, and finding the eigenvalues thereafter was also something previously done in the book exercises. However, the difficult part came when having to construct the candidate points to plug back into the initial ideal. Using "fold", which is the easiest way to construct a composite function, and "table", which takes two lists and creates all possible pairs with those two lists. These in conjuction create all possible sets of the eigenlists. I am immensly proud of this and it shows how much I have developed with this language. However, when I evaluate the candiate points over the ideal, to see which give a solution to 0, a slight problem occurs. Since the ring is in R, the computations are not exact, and slight variations cause duplicates. Even adding an epsilon of $1e^{-6}$ in order to check to see if there are duplicate solutions did not help. So, in order to solve this issue, there is an additional "unique solutions check". Here the check is to ensure that the sum of the distance between all the points is lesser than the epsilon.
+
+\begin{algorithm}[ht]
+\caption{Solution of a system of polynomial equations}
+\begin{algorithmic}[1]
+\Require A non-zero, zero-dimensional ideal, $I = \ideal{\vectorComponentsX{p}{s}}$ in $\R[\vectorComponents{x}]$
+\Ensure The points in \textbf{V}$_{\mathbb{C}}(I)$
+
+\State $ q \gets \R[\vectorComponents{x}] / I$
+\State $\vectorComponentsX{b}{l} \gets$ basis $q$
+\State eigenList $\gets \lbrace \rbrace$
+\For{$i = 1$ to $n$}
+    \State $Q \gets $ solveQMatrix$(R,I, x_i)$
+    \State eigenList $\gets$ eigenList $\cup$ eigenvalues of $Q$.
+\EndFor
+
+\State Compute the sets: \\
+$\begin{aligned}
+    X_{\R} &= \left\{ \hat{x} \in \R^n : \hat{x}_i \in \text{eigenList}_i, i = 1, \dots, n \text{ and } p_j(\hat{x}) = 0, j = 1, \dots ,s \right\} \\
+    X_{\mathbb{C}} &= \left\{ \hat{x} \in \mathbb{C}^n : \hat{x}_i \in \text{eigenList}_i, i = 1, \dots, n \text{ and } p_j(\hat{x}) = 0, j = 1, \dots ,s \right\}
+\end{aligned}$
+\State \Return $\textbf{V}_{\mathbb{C}}(I) = X_{\mathbb{C}}$ and  $\textbf{V}_{\R}(I) = X_{\R}$
+\end{algorithmic}
+\end{algorithm}
+
+The book \cite{Applied} gives an algorithm to solve the points in a variety . Equipped with the function to solve $M^Q$, it should have been easy. Starting off, for a ring $R[\vectorComponents{x}]$, all the $M_{x_i}^Q$ had to be found. This was easy enough, and finding the eigenvalues thereafter was also something previously done in the book exercises. However, the difficult part came when calculating the sets or, constructing the candidate points to plug back into the initial functions. Using "fold", which constructs a composite function, and "table", which takes two lists and creates all possible pairs with those two lists. These in conjuction create all possible sets of the eigenlists. I am immensly proud of this and it shows how much I have developed with this language. However, when I evaluate the candiate points over the ideal, to see which give a solution to 0, a slight problem occurs. Since the ring is in $\R$, the computations are not exact, and slight variations cause duplicates. Even adding an epsilon of $1e^{-6}$ in order to check to see if there are duplicate solutions did not help. So, in order to solve this issue, there is an additional "unique solutions check". Here the check is to ensure that the sum of the distance between all the points is lesser than the defined epsilon.

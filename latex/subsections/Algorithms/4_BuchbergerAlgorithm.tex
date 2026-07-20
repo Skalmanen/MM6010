@@ -1,6 +1,6 @@
-Buchbergers Algorithm is the algorithm that finds a complete gröbner basis. The Buchberger criterion that was carefully proven in the previous sections of this thesis is fully leveraged here. In doing so, the algorithm itself is rather easy to implement, all the work behind the algorithm is in proving that the criterion is sufficient to generate the Gröbner basis. However, the criterion does not imply that the algorithm will terminate in a finite amount of steps. This is important as we want to ensure that a computer can implement the algorithm successfully. 
+Buchbergers Algorithm is the algorithm that finds a complete gröbner basis. The Buchberger criterion so carefully proven in the previous sections of this thesis is fully leveraged here. In doing so, the algorithm itself is rather easy to implement as all the work behind the algorithm is in proving that the criterion is sufficient to generate the Gröbner basis. All one has to do is take the functions $\vectorComponents{p}$, create the pairs for all of them, generate the S-polynomial for each, and perform the subsequent multivariate polynomial division. 
 
-\begin{algorithm}
+\begin{algorithm}[ht]
 \caption{Buchberger Algorithm}
 \begin{algorithmic}[1]
 \Require Functions $P = \vectorComponents{p}$ that generate $I$.
@@ -30,3 +30,4 @@ Buchbergers Algorithm is the algorithm that finds a complete gröbner basis. The
     The remaining part is to prove that the algorithm terminates. Consider the remainder,$r$, that is generated from the division of members on $G$. From lemma \ref{lemma:leadTermMembership}, we can note that the $LT(r)$ is not contained in $\hat{G}$, but is added to $G$. Thus, we can state that the $\ideal{LT(\hat{G})} \subseteq \ideal{LT(G)}$ since $LT(r)$ is solely in $LT(G)$. Since we are dealing with an ascending chain of ideals in $\polyRing$, the ascending chain condition can be used (see chapter 2.5 theorem 7 in \cite{Applied}). By the ascending chain condition, there exists an $N \geq 1$ such that $I_N = I_{N+1} = I_{N+2} = \cdots$. Thus, after N steps of the algorithm, further steps will not add any $r$, and the algorithm will terminate. 
 \end{proof}
 
+This algorithm was actually implemented \textit{before} I properly understood Gröbner bases and S-polynomials. This is a fascinating aspect of the seperation between proving algorithms and their implementations. Since mathematicians take great care in proving that the algorithm is correct, the implementee can trust the algorithms correctness and tell the machine what to do. In a way, the person instructing the machine how to inform the tasks is a machine to the mathematician.

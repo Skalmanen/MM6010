@@ -20,7 +20,7 @@ Let $I \subseteq \polyRing$ be an ideal different from the  $\lbrace 0\rbrace$.
 \end{proposition}
 
 \begin{proof}
-    Since we have used the leading term to construct an ideal, the difference between the monomial ideal and $\ideal{LT(I)}$ is a nonzero constant. Consider a single $g_i = g$, and break the lead term down to the lead coefficient and lead monomial. $LT(g) = LC(g) \times LM(g)$ means that $LT(g)$ is a field scalar of $LM(g)$, which means that $LT(g)\in \ideal{LM(g)}$. We can multiply by the inverse to show that $LT(g) \times LC^{-1}(g) = LM(g)$. But $LC^{-1}(g)$ is still in $\polyRing$, so the same logic applied and they are equal to each other. So, $\ideal{LT(I)} = \ideal{LM(I)}$.
+    Since we have used the leading term to construct an ideal, the difference between the monomial ideal and $\ideal{LT(I)}$ is a nonzero constant. Consider a single $g_i = g$, and break the lead term down to the lead coefficient and lead monomial. $LT(g) = LC(g) \cdot LM(g)$ means that $LT(g)$ is a field scalar of $LM(g)$, which means that $LT(g)\in \ideal{LM(g)}$. We can multiply by the inverse to show that $LT(g) \cdot LC^{-1}(g) = LM(g)$. But $LC^{-1}(g)$ is still in $\polyRing$, so the same logic applied and they are equal to each other. So, $\ideal{LT(I)} = \ideal{LM(I)}$.
     The same logic is used for the second item. Using Dicksons Lemma tells us that monomial ideals are finitely generated. Since $\ideal{LT(I)}$ only differs from a monomial ideal by a nonzero constant, Dicksons lemma can be applied here as well and $I$ is finitely generated.
 \end{proof}
 
