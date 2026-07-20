@@ -1,4 +1,4 @@
-The following definitions and lemmas are preparatory for algorithmically finding gröbner basis. The algorithm and my implementation using Macaulay2 can be found in section \ref{sec:buchberger-algorithm}.
+The following definitions and lemmas are preparatory for algorithmically finding Gröbner bases. The algorithm and my implementation using Macaulay2 can be found in section \ref{sec:buchberger-algorithm}.
 
 \begin{definition}
     We will write $\sPoly{f}{F}$ for the remainder on division of $f$ by the ordered s-tuple $F = (\vectorComponentsX{f}{s})$. If $F$ is a Gröbner basis for $\ideal{\vectorComponentsX{f}{s}}$, then we can regard F as a set. 
@@ -30,21 +30,21 @@ Let us explore the definition provided by the book \cite{Theory}. Our numerators
     \label{lemma:5}
 \end{lemma}
 
-Cox and his book \cite{Theory} wonderfully turns our attention to an interesting idea. The assumption made in the lemma relies heavily on the properties of the s-polynomial. The written proof exists in the book in chapter 2.6 as Lemma 5. The intuition to extract from the proof can be described as follows. 
+Cox and his book \cite{Theory} turns our attention to an interesting idea. The assumption made in the lemma relies heavily on the properties of the s-polynomial. The written proof exists in the book in chapter 2.6 as Lemma 5. The intuition to extract from the proof can be described as follows. 
 
 Consider an addition of polynomials, all of them equal in multidegree, summing to a lesser multidegree. If you can find an example of that, this lemma ensures that you can rewrite that addition of polynomials as an addition of s-polynomials. Using this fact, the criteria for admission into the gröbner basis can be created. 
 
 \begin{theorem}[Buchberger’s Criterion]
-    Let I be a polynomial ideal. Then a basis G = ${\vectorComponentsX{g}{t}}$ of I is a Gröbner basis of I if and only if for all pairs i $\neq j$ the remainder, $\sPoly{\spolyFunction{g}{i}{j}}{G}$, of division is zero. 
+    Let $I$ be a polynomial ideal. Then a basis $G$ = ${\vectorComponentsX{g}{t}}$ of $I$ is a Gröbner basis of $I$ if and only if the remainder of the S-polynomial constructed using $g_i,g_j$ ($i \neq j)$ by $G$ is zero. Or in other words if: $\sPoly{\spolyFunction{g}{i}{j}}{G} = 0$ for all $(g_i,g_j) \in G$ where ($i \neq j)$.
     \label{thm:BuchbergersCriterion}
 \end{theorem}
 
-Here, the theoretical implementation is exposed. All one has to do to find a Gröbner basis is to simply check all the $g_t$s against each other using the constructed s-polynomial. If a nonzero remainder is found, a new $g_{t+1}$ is added to the basis being generated. If the remainder is zero, then we are positive that we have a gröbner basis.
+Here, the idea behind finding Gröbner bases is shown. All one has to do to find a Gröbner basis is to simply check all the $g_t$s against each other using the constructed S-polynomial. If a nonzero remainder is found, a new $g_{t+1}$ is added to the basis being generated. If the remainder is zero, then we are positive that we have a Gröbner basis.
 
 \begin{proof}
-    $\Rightarrow$ If $G$ is a gröbner basis, then we are trying to prove the remainder $\sPoly{\spolyFunction{g}{i}{j}}{G}$ is $0$. Leveraging the problem of memebership, we can recall that the remainder would be $0$ for all members of the gröbner basis. Since all of the s-polynomials are on $I$, the remainder is $0$.
+    $\Rightarrow$ If $G$ is a Gröbner basis, then we are trying to prove the remainder $\sPoly{\spolyFunction{g}{i}{j}}{G}$ is $0$. Leveraging the problem of memebership, we can recall that the remainder would be $0$ for all members of the Gröbner basis. Since all of the S-polynomials are on $I$, the remainder is $0$.
 
-    $\Leftarrow$ Proving the other way is more involved. We start by letting $f\in I$ be nonzero. We will prove that $LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}$. Consider the functions:
+    $\Leftarrow$ We start by letting $f\in I$ be nonzero. Prove that \[LT(f) \in \ideal{\finiteIdeal{LT}{g}{n}}\] This is done by considering the following functions:
 
     \begin{equation}
         f = \generalSum{i}{1}{t}{h_i g_i}, h_i \in \polyRing
@@ -59,7 +59,7 @@ Here, the theoretical implementation is exposed. All one has to do to find a Gr�
         \label{eq:criterionDelta}
     \end{equation}        
     
-    By equations \ref{eq:criterionMultF} and \ref{eq:criterionDelta} we can arrive at the fact $\text{multdeg}(f) \leq \delta$. In addition to this, we will also minimize the $\delta$. Since we have that $\text{multdeg}(f) \leq \delta = \min  \text{multdeg}(f)$, there needs to be two seperate cases.
+    By equations \ref{eq:criterionMultF} and \ref{eq:criterionDelta} we can arrive at the fact $\text{multdeg}(f) \leq \delta$. In addition to this, we will also minimize the $\delta$.  Since we have that $\text{multdeg}(f) \leq \delta = \min  \text{multdeg}(f)$, there needs to be two seperate cases.
 
     \begin{enumerate}
         \item $\text{multdeg}(f) = \delta$. Then, $LT(f)$ is divisible by $LT(g_i)$ since the gröbner base produces all leading terms in the ideal. In other words:
@@ -70,10 +70,10 @@ Here, the theoretical implementation is exposed. All one has to do to find a Gr�
        \item $\text{multdeg}(f) < \delta$.
     \end{enumerate}
 
-    Proving $\text{multdeg}(f) < \delta$ requires rigor. Lets us first state an assumption which we will operate upon: $\delta$ has been minimized and cannot be reduced further. That assumption can be broken if we can prove that $\delta$ could be reduced to the $\text{multdeg}(f) = \delta$ case.
+    Proving $\text{multdeg}(f) < \delta$ requires rigor. Lets us first state an assumption which we will operate upon: The arrangment of $f $provides a minimal $\delta$ cannot be reduced further. If that assumption can be broken by finding a smaller $\delta$, then we have proven that $\delta$ will always be the $\text{multdeg}(f) = \delta$ case.
 
-    We do this by considering an f with a minimum $\delta$. Split the sum into its two components and then extract the leading term for each iteration of $i$.
-\begin{equation}
+    We do this by considering an $f$ with a minimum $\delta$. Split the sum into its two components and then extract the leading term for each iteration of $i$.
+\begin{equation}\label{eq:sumOfDelta} 
     \begin{aligned}
     f
     &= \sum_{\text{multdeg}(h_i g_i)=\delta} h_i g_i
@@ -84,9 +84,10 @@ Here, the theoretical implementation is exposed. All one has to do to find a Gr�
     \end{aligned}
 \end{equation}
 
-It is clear that the second and third terms monomials of of the second line all have degrees lesser than $\delta$. So, we can focus our attention solely on the monomials of the sum that includes the leading term. This is since if we can prove that the monomials in the sum of the leading terms is less than $\delta$, then the claim of $\delta$ minimal property is contradicted. This is where our well studied S-polynomial is used. 
+Clearly the sum of functions with multidegree less than $\delta$ cannot sum to something greater than $\delta$. Equally so, the degree of the sum of functions where a leading term has been removed will be lesser than the multidegree the functions to begin with. So the second and third sums of the expanded equation \ref{eq:sumOfDelta} will be less than $\delta$. So, we can focus our attention solely on the monomials of the sum that includes the leading term. This is since if we can prove that the monomials in the sum of the leading terms is less than $\delta$, then the claim of $\delta$ minimal property is contradicted. This is where our well studied S-polynomial is used. 
 
-Since the sum of all the sums is less than $\delta$, our leading term sum must also be less that $\delta$. But this was the exact definition from lemma \ref{lemma:5}. So we can rewrite the sum of leading terms as a combination of S-polynomials. After alot of rearranging and proving that the S-polynomial of two functions can be rewritten as a constant times an s-polynomial of the $g_i$ due to $\sPoly{\spolyFunction{g}{i}{j}}{G}$. After that, one can rearrange the monomials $LT(h_i)g_i$ to be a monomial that is always less than $\delta$.
+Since the sum of all the sums in equation \ref{eq:sumOfDelta} is less than $\delta$, our leading term sum is forced to be less than $\delta$. But this was the exact definition from lemma \ref{lemma:5}. So we can rewrite the sum of leading terms as a combination of S-polynomials. But the consequence of using S-polynomials and lemma \ref{lemma:5} was precisely that the summands have a lesser multidegree. Then, we have shown that $f$ can be rewritten as a sum of polynomials, all with multidegree less than that minimal $\delta$. Thus, we have contridicted the initial claim.
+
 \end{proof}
 
-This criterion is the primary tool for the algorithm that is going to be constructed and programmed. By having a concrete way of checking if a function is part of the gröbner basis, an algorithm can be constructed. This is shown and proven in section \ref{sec:buchberger-algorithm}. 
+This criterion is the primary tool for the algorithm that is going to be constructed and programmed. By having a concrete way of checking if a function is part of a Gröbner bases, an algorithm can be constructed. 

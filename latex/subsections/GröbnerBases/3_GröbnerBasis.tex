@@ -1,16 +1,16 @@
 
-\subsection{Gröbner basis} 
+\subsection{Gröbner Basis} 
 \label{ssec:grobner-basis}
-The generating set $\ideal{LT(I)}$ was introduced in the last chapter. As we noted then, it is an large set. Dealing with monomials reduces the complexity drastically as opposed to polynomials, so if we can use the $\ideal{LT(I)}$ instead of the polynomial one, it would simplify calculations. Recall that the Hilbert Basis theorem stated that every polynomial ideal has a finite generating set. However, it is not unique. We will start with an ideal that is of special interest to the world of polynomial calculation.
+The generating set $\ideal{LT(I)}$ was introduced in the last section. Dealing with monomials reduces the complexity drastically as opposed to polynomials, so if we can use the $\ideal{LT(I)}$ instead of the polynomial one, it would simplify calculations. Recall that the Hilbert Basis theorem stated that every polynomial ideal has a finite generating set. However, it is not unique. We will start with an ideal that is of special interest to the world of polynomial calculation.
 
 \begin{definition}
-    Choose a monomial ordering on the polynomial ring $\K[x]$. A finite nonzero subset, $G = \lbrace \vectorComponentsX{g}{t} \rbrace $ of an ideal, $I$, which is a subset of $\K[x]$ is a \textbf{Gröbner Basis} if 
+    Choose a monomial ordering on the polynomial ring $\polyRing$. A finite nonzero subset, $G = \lbrace \vectorComponentsX{g}{t} \rbrace $ of an ideal, $I$, which is a subset of $polyRing$ is a \textbf{Gröbner basis} if 
     \begin{equation}
         \ideal{LT(g_1), ... , LT(g_t)} = \ideal{LT(I)}
     \end{equation}
 \end{definition}
 
-The construction is purposeful; we can operate on a object of immense size, $\ideal{LT(I)}$, while restricting ourselves to a finite number of generators. This makes the theoretical exploration less complex (due to the construction of $\ideal{LT(I)}$) while the instruction to a computer becomes guaranteed possible (as we are restricting algorithms input to finite). 
+The construction is purposeful; we can operate on a object of immense size, $\ideal{LT(I)}$, while restricting ourselves to a finite number of generators. This makes the theoretical exploration less complex due to the flexibility of $\ideal{LT(I)}$). It also ensures that giving instruction to a computer becomes possible as we have eliminated the need to find an infinte ideal. Instead, we find the finite generating set. 
 
 The next question to answer is how to construct Gröbner bases to operate upon. Since these are useful for computational purposes, an algorithm for how to compute them will be discussed and proven. Before that, it is important to have an understanding of some key properties we can leverage from this basis.
 

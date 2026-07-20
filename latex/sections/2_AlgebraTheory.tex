@@ -1,7 +1,7 @@
 \clearpage{\thispagestyle{empty}}
 \section{Algebra Theory}
 \label{sec:algebra-theory}
-With affine varieties under our belt, there is an obvious follow up to this knowledge. Especially for those interested in the real application of this mathematics. Namely, how do we solve these varieties? It is great to describe them, and on a theoretical level it is powerful but to apply them is a challenge in itself. Luckily, the problem of asking for the affine variety points boils down to solving a system of polynomials equations. This is easier said than done, and an issue arises when going to greater and greater dimensions. Most real world problems will involve many dimensions, and being able to solve these problems quickly and with confidence is of importance. To do so, a computer algebra system is most helpful.
+With affine varieties under our belt, there is an obvious follow up to this knowledge, especially for those interested in the real application of this mathematics. Namely, how do we solve these varieties? Luckily, the problem of asking for the affine variety points can be reduced to solving a system of polynomials equations. This is easier said than done, and computational complexity arises when considering $n$ dimensions. Most real world problems will involve many dimensions, and being able to solve these problems quickly and with confidence is of importance. To do so, utilizing a computer algorithm would be a solution.
 
 Every computer language has important data structures that determine how the language is shaped. For Macaulay 2, ideals is one of these types. They are important to algebra, and native support for manipulating ideals exist. However, to efficiently handle ideals, there is a problem that needs to be solved with great confidence. Namely: how do we go between abstract entities such as ideals and something that a computer can interact with?
 
@@ -9,7 +9,6 @@ Every computer language has important data structures that determine how the lan
 
 \subsection{Hilbert Bases Theorem}
 \label{ssec:hilbert-bases-theorem}
-Here the results that monomial ideals have finite generators is extended to polynomial ideals. The basic idea is that by rearranging the ideal to a monomial ideal using the leading term, we can apply the Dicksons lemma. 
 \input{subsections/GröbnerBases/3_HilbertBases.tex}
 
 \input{subsections/GröbnerBases/3_GröbnerBasis.tex}
