@@ -36,6 +36,7 @@ Consider an addition of polynomials, all of them equal in multidegree, summing t
 
 \begin{theorem}[Buchberger’s Criterion]
     Let I be a polynomial ideal. Then a basis G = ${\vectorComponentsX{g}{t}}$ of I is a Gröbner basis of I if and only if for all pairs i $\neq j$ the remainder, $\sPoly{\spolyFunction{g}{i}{j}}{G}$, of division is zero. 
+    \label{thm:BuchbergersCriterion}
 \end{theorem}
 
 Here, the theoretical implementation is exposed. All one has to do to find a Gröbner basis is to simply check all the $g_t$s against each other using the constructed s-polynomial. If a nonzero remainder is found, a new $g_{t+1}$ is added to the basis being generated. If the remainder is zero, then we are positive that we have a gröbner basis.
@@ -88,4 +89,4 @@ It is clear that the second and third terms monomials of of the second line all 
 Since the sum of all the sums is less than $\delta$, our leading term sum must also be less that $\delta$. But this was the exact definition from lemma \ref{lemma:5}. So we can rewrite the sum of leading terms as a combination of S-polynomials. After alot of rearranging and proving that the S-polynomial of two functions can be rewritten as a constant times an s-polynomial of the $g_i$ due to $\sPoly{\spolyFunction{g}{i}{j}}{G}$. After that, one can rearrange the monomials $LT(h_i)g_i$ to be a monomial that is always less than $\delta$.
 \end{proof}
 
-This criterion is the primary tool for the algorithm that is going to be constructed and programmed. By having a concrete way of checking if a function is part of the gröbner basis. 
+This criterion is the primary tool for the algorithm that is going to be constructed and programmed. By having a concrete way of checking if a function is part of the gröbner basis, an algorithm can be constructed. This is shown and proven in section \ref{sec:buchberger-algorithm}. 

@@ -1,3 +1,4 @@
+Buchbergers Algorithm is the algorithm that finds a complete gröbner basis. The Buchberger criterion that was carefully proven in the previous sections of this thesis is fully leveraged here. In doing so, the algorithm itself is rather easy to implement, all the work behind the algorithm is in proving that the criterion is sufficient to generate the Gröbner basis. However, the criterion does not imply that the algorithm will terminate in a finite amount of steps. This is important as we want to ensure that a computer can implement the algorithm successfully. 
 
 \begin{algorithm}
 \caption{Buchberger Algorithm}
@@ -23,12 +24,9 @@
 \end{algorithmic}
 \end{algorithm}
 
-Buchbergers Algorithm is the first algorithm that properly involves gröbner basis. It also immediately solves the issue faced by the multivariate division algorithm. It primarily does so by dividing by an ideal instead of a set of polynomials. This set must be "special" in the sense that the remainder of the division is special. In fact, the remainder of the generators must be uniquely determined and if the remainder is zero, then it is equivalent to having membership in the ideal $I$ \cite{Applied}. As it turns out, gröbner bases have these two properties.
+\begin{proof}
+    There are two parts to the proof. First, we must prove that the generated set, $G$, actually is a Gröbner basis, and then we must prove that the algorithm terminates. We can prove that $G$ is a Gröbner basis by first noting that that $G \subseteq I$ at every point of the algorithm. Since we are solely using functions that generate $I$, any remainder from division will be on $I$ as well. So by extending $G$ with the remainder, $G \subseteq I$ holds. The fact that the ideal $G$ is a Gröbner basis comes from theorem \ref{thm:BuchbergersCriterion}. The algorithm terminates when $\sPoly{\spolyFunction{g}{i}{j}}{\hat{G}} = 0$ for all pairs which was the condition for the basis to be a Gröbner basis. 
+    
+    The remaining part is to prove that the algorithm terminates. Consider the remainder,$r$, that is generated from the division of members on $G$. From lemma \ref{lemma:leadTermMembership}, we can note that the $LT(r)$ is not contained in $\hat{G}$, but is added to $G$. Thus, we can state that the $\ideal{LT(\hat{G})} \subseteq \ideal{LT(G)}$ since $LT(r)$ is solely in $LT(G)$. Since we are dealing with an ascending chain of ideals in $\polyRing$, the ascending chain condition can be used (see chapter 2.5 theorem 7 in \cite{Applied}). By the ascending chain condition, there exists an $N \geq 1$ such that $I_N = I_{N+1} = I_{N+2} = \cdots$. Thus, after N steps of the algorithm, further steps will not add any $r$, and the algorithm will terminate. 
+\end{proof}
 
-In order to divide by the gröbner base (or that "special" ideal), it must first be constructed. Luckily, the Buchbergers algorithm does just that. The full implementation can be found in \ref{lst:algorithm124} but there are interesting mathematical properties to discuss in this algorithm. 
-
-\subsubsection{Mathematical properties}
-\label{sssec:buchberger-mathematical-properties}
-The most interesting part of this algorithm is the S-polynomial which is specifically designed to cancel the leading terms of the two polynomials being compared \cite{Applied}. To find this polynomial, the lead monomial of each polynomial is extracted, and then the greatest exponent of each variable is found. This is equivalent to finding the least common multiple between the monomials and it how it is implemented in \ref{lst:algorithm124}. Then, the lead term of each polynomial divides the least common multiple and the entire fraction multiplies the original polynomial. This is repeated for the other polynomial and they are subtracted from each other. Then the S-polynomial has been found.
-
-The use of this s-polynomial is a bit more involved. The Buchberger criterion states that a basis $G=\{\vectorComponents{g}\}$ is a gröbner basis if and only if all pairs $i \neq j$, the remainder on division of $S(g_i,g_j)$ by $G$ is 0 \cite{Theory}. In other words, the algorithm has to generate pairs of all polynomials, find the S-polynomial and then ensure that the remainder after doing multivariate polynomial division is $0$. If it is not, the remainder is appended and the algorithm continues until the termination condition that the remainder being $0$ for all pairs is met.   
