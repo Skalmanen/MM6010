@@ -1,0 +1,12 @@
+\clearpage{\thispagestyle{empty}\cleardoublepage}
+
+\section{Discussion}
+There are two distinct parts of this thesis to consider: the construction of an algorithm and the execution of an algorithm. They were not weighed equally in this thesis. This section considers the imbalance between the two and what they offered as part of a thesis surrounding mathematics.
+
+\subsection{Mathematical Proof and Knowledge}
+Building an algorithm requires intimate knowledge of underlying mathematical concepts as well as a familiarity with proof construction. While background knowledge was gathered for affine varieties, and more generally algebraic geometry, these were less significant to the scope of the thesis. Instead, these concepts justified the exploration of Gröbner bases. Even then, theory surrounding the \textit{usage} of Gröbner bases was limited. Instead, a majority of the theoretical knowledge and proofs found in the thesis concern Gröbner bases, specifically the construction of the Buchberger criterion. The criterion is the motor behind the Buchberger algorithm, used to constructs Gröbner bases, and provided deep insight into how algorithms are created.
+
+The primary insight gathered while learning about the Buchberger algorithm was the amount of work that is necessary to create these algorithms. The implementation is straightforward and the execution of the algorithm is reduced to finding the S-polynomial \ref{def:spolynomial}. But there are two complexities that are not immediately obvious. Namely, that one must prove that the algorithm terminates in a finite number of steps as well as the process of proving that the S-polynomial actually yields a Gröbner basis. 
+
+\subsection{Algorithm Execution} 
+However, the most impressive part is the process of making a theoretical idea concrete. Taking abstract mathematical objects such as ideals and  

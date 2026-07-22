@@ -1,7 +1,7 @@
 
-\subsection{Gröbner Basis} 
+\subsection{Gröbner Bases} 
 \label{ssec:grobner-basis}
-The generating set $\ideal{LT(I)}$ was introduced in the last section. Dealing with monomials reduces the complexity drastically as opposed to polynomials, so if we can use the $\ideal{LT(I)}$ instead of the polynomial one, it would simplify calculations. Recall that the Hilbert Basis theorem stated that every polynomial ideal has a finite generating set. However, it is not unique. We will start with an ideal that is of special interest to the world of polynomial calculation.
+The generating set $\ideal{LT(I)}$ was introduced in the last section. Dealing with monomials reduces the complexity drastically as opposed to polynomials, so if we can use the $\ideal{LT(I)}$ instead of the polynomial one, it would simplify calculations. Recall that the Hilbert basis theorem stated that every polynomial ideal has a finite generating set. However, it is not unique. We will start with an ideal that is of special interest to the world of polynomial calculation.
 
 \begin{definition}
     Choose a monomial ordering on the polynomial ring $\polyRing$. A finite nonzero subset, $G = \lbrace \vectorComponentsX{g}{t} \rbrace $ of an ideal, $I$, which is a subset of $polyRing$ is a \textbf{Gröbner basis} if 
@@ -14,7 +14,7 @@ The construction is purposeful; we can operate on a object of immense size, $\id
 
 The next question to answer is how to construct Gröbner bases to operate upon. Since these are useful for computational purposes, an algorithm for how to compute them will be discussed and proven. Before that, it is important to have an understanding of some key properties we can leverage from this basis.
 
-\subsubsection{Properties Of Gröbner Basis}
+\subsubsection{Properties Of Gröbner Bases}
 \label{sssec:properties-of-grobner-basis}
 \input{subsections/GröbnerBases/PropertiesOfGröbnerBasis.tex}
 \subsubsection{Buchberger's Criterion}

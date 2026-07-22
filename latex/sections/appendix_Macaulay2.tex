@@ -1,53 +1,38 @@
 \section{Macaulay2 source files}
-\label{app:macaulay2}
 
 A link to all the source files can be found at the github link \cite{Github} under the m2 folder.
 
-\subsection{Univariate Division Algorithm}
-\lstinputlisting[caption={A Macaulay2 implementation of the univariate division algorithm}]{../M2/Algorithm121.m2}
-\label{lst:algorithm121}
+\subsection{Algorithms}
+\label{app:algorithms}
 
-\newpage
-\subsection{Multivariate Division Algorithm}
-\lstinputlisting[caption={The Multivariate Division Algorithm.}]{../M2/algorithm123.m2}
-\label{lst:algorithm123}
-The algorithm is loaded into other scripts under the alias algorithm123.m2. This is due to the fact that the pseudocode found as algorithm 1.2.3 \cite{Applied}. \\ LeadingTermDivision$(p,g)$ is a failed attempted at dividing the leading terms, but is kept to display progress. 
-\newpage
+\lstinputlisting[caption={A Univariate Division Algorithm}, captionpos=t,  label=lst:algorithm121]{../M2/Algorithm121.m2}
 
-\subsection{Buchberger Algorithm}
-\lstinputlisting[caption={The algorithm to find Gröbner basis.} ]{../M2/algorithm124.m2}
-\label{lst:algorithm124}
-FindXDelta$(p,q)$ was later replaced with the native least common denominator function.
+The multivariate division algorithm is loaded into other scripts under the alias algorithm123.m2. This is due to the fact that the pseudocode found as algorithm 1.2.3 \cite{Applied}. LeadingTermDivision is a failed attempted at dividing the leading terms, but is kept to display progress. 
 
-\subsection{Solution to system of polynomial equations}
-\lstinputlisting[caption={An algorithm for solving polynomial systems using ideals and varieties}]{../M2/algorithm161.m2}
-\label{lst:algorithm161}
-Refered to as algorithm 1.6.1 as the pseudocode us found under the same name in \cite{Applied}. The refactored QMatrix function can be found here, but was initially created using the preparatory examples \ref{lst:example-1612}.
+\lstinputlisting[caption={The Multivariate Division Algorithm.}, captionpos=t,  label=lst:algorithm123]{../M2/algorithm123.m2}
+
+The Buchberger algorithm is used to find Gröbner bases. The function FindXDelta was later replaced with the native least common denominator function to reduce clutter and error.
+\lstinputlisting[caption={Buchbergers Algorithm.}, captionpos=t,  label=lst:algorithm124]{../M2/algorithm124.m2}
+
+Refered to as algorithm 1.6.1 as the pseudocode us found under the same name in \cite{Applied}. The refactored QMatrix function can be found here, but was initially created using the preparatory examples listing \ref{lst:example-1612} and listing \ref{lst:example-1612}.
+\lstinputlisting[caption={Solution to Systes of Polynomial Equations}, captionpos=t,  label=lst:algorithm161]{../M2/algorithm161.m2}
 \newpage
 
-\subsection{Theoretical Examples Implemented}
-\lstinputlisting[caption={Example 1.6.12 \cite{Applied}}]{../M2/BookExample1612.m2}
-\label{lst:example-1612}
+\subsection{Examples}
+\label{app:examples}
 
-\lstinputlisting[caption={Example 1.6.13 \cite{Applied}}]{../M2/BookExample1613.m2}
-\label{lst:example-1613}
-\newpage
+\lstinputlisting[caption={Example 1.6.12 \cite{Applied}}, captionpos=t, label=lst:example-1612]{../M2/BookExample1612.m2}
 
-\subsection{Explicit Macaulay2 Examples Rewritten}
-\lstinputlisting[caption={Macaulay2 code from 2.1.1 \cite{Applied}}]{../M2/BookExample2.1.1.m2}
-\label{lst:book-example-2-1-1}
+\lstinputlisting[caption={Example 1.6.13 \cite{Applied}}, captionpos=t,  label=lst:example-1613]{../M2/BookExample1613.m2}
 
-\lstinputlisting[caption={Macaulay2 code from  2.2.1 \cite{Applied}}]{../M2/BookExample2.2.m2}
-\label{lst:book-example-2-2}
+\lstinputlisting[caption={Macaulay2 code from 2.1.1 \cite{Applied}}, captionpos=t,  label=lst:book-example-2-1-1]{../M2/BookExample2.1.1.m2}
 
-\lstinputlisting[caption={Macaulay2 code from  2.2.2 \cite{Applied}}]{../M2/BookExample222.m2}
-\label{lst:book-example-222}
+\lstinputlisting[caption={Macaulay2 code from  2.2.1 \cite{Applied}}, captionpos=t,  label=lst:book-example-2-2]{../M2/BookExample2.2.m2}
 
-\lstinputlisting[caption={Macaulay2 code from 2.3.1 \cite{Applied}}]{../M2/BookExample231.m2}
-\label{lst:book-example-231}
+\lstinputlisting[caption={Macaulay2 code from  2.2.2 \cite{Applied}}, captionpos=t,  label=lst:book-example-222]{../M2/BookExample222.m2}
 
-\lstinputlisting[caption={Macaulay2 code from 2.3.2 \cite{Applied}}]{../M2/BookExample232.m2}
-\label{lst:book-example-232}
+\lstinputlisting[caption={Macaulay2 code from 2.3.1 \cite{Applied}}, captionpos=t,  label=lst:book-example-231]{../M2/BookExample231.m2}
 
-\lstinputlisting[caption={documentationConditionals.m2 \cite{M2}}]{../M2/documentationConditionals.m2}
-\label{lst:documentation-conditionals}
+\lstinputlisting[caption={Macaulay2 code from 2.3.2 \cite{Applied}}, captionpos=t,  label=lst:book-example-232]{../M2/BookExample232.m2}
+
+\lstinputlisting[caption={documentationConditionals.m2 \cite{M2}}, captionpos=t,  label=lst:documentation-conditionals]{../M2/documentationConditionals.m2}
